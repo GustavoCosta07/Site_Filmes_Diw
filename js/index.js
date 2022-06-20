@@ -8,9 +8,10 @@ const searchGenresUrl = baseUrl + '/genre/movie/list?api_key=' + apiKey + '&lang
 
 window.onload = () => {
     getGenres()
-    getMovies() 
+    getMovies()
     const pesquisar = document.querySelector('#pesquisar')
     pesquisar.addEventListener("click", searchMovies);
+    
 }
 
 const getGenres = () => {
@@ -43,8 +44,8 @@ const montarHtml = (response) => {
     // acessando propriedade results
     // vai retornar uma lista []
     const filmes = response.results
-            //     divRow = document.createElement("div");
-        //     divRow.classList.add('row')
+    //     divRow = document.createElement("div");
+    //     divRow.classList.add('row')
 
     for (const filme of filmes) {
         // if (contador === 0) {
@@ -52,12 +53,9 @@ const montarHtml = (response) => {
         //     divRow.classList.add('row')
         // }
 
-        console.log(filme)
-
-        
         let associateGenres = genres.filter((genre) => {
             return filme.genre_ids.includes(genre.id)
-        }) 
+        })
 
         associateGenres = associateGenres.map((genre) => {
             return genre.name
@@ -65,7 +63,7 @@ const montarHtml = (response) => {
 
         const imgUrl = getPoster(filme.poster_path)
 
-        const newRow = ` <div class="row justify-content-center mb-5">
+        const newRow = `<div class="row justify-content-center mb-5">
             <div class="col-5">
                 <img src="${imgUrl}" class="rounded mx-auto d-block" alt="">
             </div>
@@ -85,6 +83,9 @@ const montarHtml = (response) => {
                         <i class="fas fa-film fa-2x" aria-hidden="true"></i>
                         <p class="mt-1">${associateGenres.join(', ')}</p>                   
                     </div>
+                     <div class="col-6">
+                        <a class="btn btn-outline-success my-2 my-sm-0" href="https://www.themoviedb.org/movie/${filme.id}" target="_blank" >Detalhes</a>        
+                     </div>
                 </div>
             </div>
       </div>`
