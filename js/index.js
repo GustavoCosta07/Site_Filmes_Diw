@@ -8,7 +8,9 @@ const searchGenresUrl = baseUrl + '/genre/movie/list?api_key=' + apiKey + '&lang
 
 window.onload = () => {
     getGenres()
-    getMovies()
+    getMovies() 
+    const pesquisar = document.querySelector('#pesquisar')
+    pesquisar.addEventListener("click", searchMovies);
 }
 
 const getGenres = () => {
@@ -109,7 +111,8 @@ const montarHtml = (response) => {
 }
 
 const searchMovies = () => {
-    const query = 'Aranha'
+    const barraDePesquisa = document.querySelector('#barraDePesquisa')
+    const query = barraDePesquisa.value
     const url = searchMovieUrl + '&query=' + query
     fetch(url)
         // arrow function =>
