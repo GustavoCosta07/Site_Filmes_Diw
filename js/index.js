@@ -6,11 +6,16 @@ const moviesPopularUrl = baseUrl + '/movie/popular?api_key=' + apiKey + '&langua
 const searchMovieUrl = baseUrl + '/search/multi?api_key=' + apiKey + '&language=pt-BR'
 const searchGenresUrl = baseUrl + '/genre/movie/list?api_key=' + apiKey + '&language=pt-BR'
 let paginaAnterior = null
+let proximaPagina = null
+
 
 
 window.onload = () => {
+
     paginaAnterior = document.querySelector('#prevPage') 
     paginaAnterior.disabled = true
+    proximaPagina =  document.querySelector('#proxPage')
+    proximaPagina.disabled = false
     getGenres()
     getMovies()
 
@@ -22,7 +27,7 @@ window.onload = () => {
 
 const getGenres = () => {
     fetch(searchGenresUrl)
-        // arrow function =>
+       
         .then(dados => dados.json())
         .then(dados => {
             genres = dados.genres
@@ -33,11 +38,13 @@ const getGenres = () => {
 const getMovies = (page = 1) => {
     const url = moviesPopularUrl + '&page=' + page
     fetch(url)
-        // arrow function =>
+        
         .then(dados => dados.json())
         .then(dados => {
             montarHtml(dados)
         }).catch(err => console.log(err))
+    
+        proximaPagina.disabled = false
 }
 
 const montarHtml = (response) => {
@@ -46,8 +53,7 @@ const montarHtml = (response) => {
 
     let contador = 0;
     let divRow = null;
-
-
+    
     const filmes = response.results
     
 
@@ -110,6 +116,9 @@ const searchMovies = () => {
         .then(response => {
             montarHtml(response)
         }).catch(err => console.log(err))
+
+        paginaAnterior.disabled = true
+        proximaPagina.disabled = true
 
 }
 

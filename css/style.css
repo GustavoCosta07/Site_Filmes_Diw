@@ -1,18 +1,14 @@
 body{
     background-color: black;
 }
+
 h1{
     color: #f06007;
 } 
-div class{
-    color: red;
-}
-
+ 
 .movie {
     display: block;
     margin: 30px;
-    /* padding: 10px 15px;
-    background-color: #fff; */
     height: auto;
     transition: all 0.3s ease-in-out;
 }
