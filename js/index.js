@@ -90,9 +90,8 @@ const montarHtml = (response) => {
                             <i class="fas fa-film fa-2x" aria-hidden="true"></i>
                             <p class="mt-1">${associateGenres.join(', ')}</p>                   
                         </div>
-                         <div class="col-6">
-                         <! -- chamar uma função no href e nesta função ter a lógica de if propriedade--> 
-                            <a class="btn btn-outline-success" href="https://www.themoviedb.org/${controle}/${filme.id} " target="_blank" >Detalhes</a>        
+                         <div>
+                            <a href="https://www.themoviedb.org/${controle}/${filme.id}" class="btn btn-dark" style="background-color: #990202;" target=_blank>Detalhes</a>       
                          </div>
                     </div>
                 </div>
